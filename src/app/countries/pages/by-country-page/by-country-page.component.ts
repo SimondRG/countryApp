@@ -12,12 +12,16 @@ export class ByCountryPageComponent {
   constructor( private countriesServices: CountriesService ){}
 
   public countries: Country[] = []
+  public isLoading: boolean = false;
 
   searchByPais(term: string): void{
+
+    this.isLoading = true;
 
     this.countriesServices.searchCountry( term )
       .subscribe( countries =>{
         this.countries = countries
+        this.isLoading = false;
       });
 
   }
